@@ -8,13 +8,19 @@ from generateLDAP import get_ldap_token
 from readcsv import read_from_csv, write_to_csv
 from os.path import join, dirname
 
+
+
 # File path to log file
 log_file_path = join(dirname(__file__), "log.txt")
 log_file = open(log_file_path, "a")
 
+
+
 # File path to env variable
 env_file_path = join(dirname(__file__), ".env")
 env_vars = parse_env_file(env_file_path)
+
+
 
 # Extract variable from env file
 username = env_vars.get("USERNAME")
@@ -22,9 +28,11 @@ password = env_vars.get("PASSWORD")
 systemToken = env_vars.get("SYSTEMTOKEN")
 
 
+
+
 # Generate LDAP Token
 LDAP = get_ldap_token(username, password, log_file)
-# LDAP = "LDAP PASSWORD"
+
 
 # File path to input csv
 csv_file_path = join(dirname(__file__), "embedtocapi.csv")
@@ -61,6 +69,7 @@ def moveToCAPI():
 
                 continue
             else:
+
                 # adding unique phone numbers and waba id to set to process further
                 pnSet.add(phoneNumber[i])
 
@@ -130,6 +139,8 @@ def moveToCAPI():
         print(f"error while move to CAPI: ", e)
         
         log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | error while opening csv at ({csv_file_path}) |  {str(e)} \n')
+
+
 
 def setCloudSubscrption(wabaId, systemToken):
     
