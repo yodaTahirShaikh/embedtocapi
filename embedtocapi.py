@@ -85,10 +85,13 @@ def moveToCAPI():
 
                 try:
 
+                    
                     # API call with exception handling
                     moveToCAPIResponse = requests.post(moveToCAPIUrl,headers=moveToCAPIPayload, data=moveToCAPIHeaders)
                     moveToCAPIResponse.raise_for_status()
                     time.sleep(3)
+
+
                     # if the status code from the api call is other than 200
                     if moveToCAPIResponse.status_code != 200:
 
@@ -112,6 +115,7 @@ def moveToCAPI():
                                 log_file.write(f'\n{time.strftime("%Y-%m-%d %H:%M:%S")} | duplicate phone number or already processed ({wabaId[i]})\n')
 
                                 continue
+
                             else:
                                 wabaSet.add(wabaId[i])
 
