@@ -3,7 +3,7 @@
 Pre-requisites:
 Python 3.10+
 
-To install dependencies run the following command
+To install dependencies run the following command: 
 pip install -r requirements.txt
 
 **Note**
