@@ -1,8 +1,5 @@
 import requests
-import json
 import time
-import os
-import pandas as pd
 from parseenv import parse_env_file
 from generateLDAP import get_ldap_token
 from readcsv import read_from_csv, write_to_csv
@@ -34,18 +31,22 @@ systemToken = env_vars.get("SYSTEMTOKEN")
 LDAP = get_ldap_token(username, password, log_file)
 
 
+
 # File path to input csv
 csv_file_path = join(dirname(__file__), "embedtocapi.csv")
 
 
-# File path to result csv
+
+# File path to result file
 output_file = "CAPIMigrationresult.xlsx"
 
 
 def moveToCAPI():
     try:
+
+        # To avoid rerun of migration api for the same number
+        # Storing the process phone numbers in a set
         pnSet = set()
-        wabaSet = set()
 
         # Read data from csv file and store in csvData
         csvData = read_from_csv(csv_file_path, log_file)
@@ -65,6 +66,7 @@ def moveToCAPI():
                 
                 log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | duplicate phone number or already processed ({phoneNumber[i]})\n')
                 
+                # incrementing the index to avoid rerun
                 i += 1
 
                 continue
@@ -77,19 +79,22 @@ def moveToCAPI():
                 
                 # preping the url and payload for the Cloud Migration API
                 moveToCAPIUrl = f"https://whatsapp-internal-support.gupshup.io/support/migrate/{appID[i]}/docker/embed"
-                moveToCAPIPayload = f"phone={phoneNumber[i]}&clientName={appName[i]}&phoneId={phoneId[i]}&wabaId={wabaId[i]}"
+                moveToCAPIPayload = f"phone={phoneNumber[i]}&clientName={appName[i]}&phoneId={phoneId[i]}&wabaId={wabaId[i]}&forceMigrate=true"
                 moveToCAPIHeaders = {
                     "Authorization": f"{LDAP}",
                     "Content-Type": "application/x-www-form-urlencoded",
                 }
 
                 try:
-
                     
-                    # API call with exception handling
-                    moveToCAPIResponse = requests.post(moveToCAPIUrl,headers=moveToCAPIPayload, data=moveToCAPIHeaders)
+                    # Migrate to CAPI api call with exception handling
+                    # handle connection timeout within 30 seconds and response time to 70 seconds before raising exception
+                    moveToCAPIResponse = requests.post(moveToCAPIUrl,headers=moveToCAPIPayload, data=moveToCAPIHeaders, timeout=(30, 70))
+
+                    # raise exception if status code is not 200
                     moveToCAPIResponse.raise_for_status()
-                    time.sleep(3)
+
+                    time.sleep(2)
 
 
                     # if the status code from the api call is other than 200
@@ -107,28 +112,16 @@ def moveToCAPI():
 
                     # if the status code from the api call is 200
                     else:
-                        try:
-                            if wabaId[i] in pnSet:
+                                    
+                        write_to_csv([appID[i],phoneNumber[i],appName[i],phoneId[i],wabaId[i], moveToCAPIResponse.status_code, moveToCAPIResponse], output_file, log_file )
 
-                                print(f"duplicate phone number or already processed ({wabaId[i]})\n")
+                        print(f'cloud migration success for {phoneNumber[i]}\n')
 
-                                log_file.write(f'\n{time.strftime("%Y-%m-%d %H:%M:%S")} | duplicate phone number or already processed ({wabaId[i]})\n')
+                        log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | success move to capi (status : {moveToCAPIResponse.status_code}) | {appName[i]} | {phoneNumber[i]} | {moveToCAPIResponse}\n')
 
-                                continue
 
-                            else:
-                                wabaSet.add(wabaId[i])
-
-                                setCloudSubscrption(wabaId[i], systemToken)
-                        
-                                write_to_csv([appID[i],phoneNumber[i],appName[i],phoneId[i],wabaId[i], moveToCAPIResponse.status_code, moveToCAPIResponse], output_file, log_file )
-
-                                print(f'cloud migration success for {phoneNumber[i]}\n')
-
-                                log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | success move to capi (status : {moveToCAPIResponse.status_code}) | {appName[i]} | {phoneNumber[i]} | {moveToCAPIResponse}\n')
-                        
-                        except:
-                            print("error when adding subscription \n")
+                except requests.exceptions.Timeout:
+                        print("move to CAPI request timed out")
 
                 except requests.exceptions.HTTPError as err:
                 
@@ -136,7 +129,7 @@ def moveToCAPI():
 
                     print(f"{error_msg}\n")
 
-                    log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} | error at support login (status : {err.response.status_code}) | {username} | {err.response.json()['message']}\n")
+                    log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} | error while  (status : {err.response.status_code}) | {username} | {err.response.json()['message']}\n")
 
     except requests.exceptions.RequestException as e:
         
@@ -146,37 +139,6 @@ def moveToCAPI():
 
 
 
-def setCloudSubscrption(wabaId, systemToken):
-    
-    payload = json.dumps({"override_callback_uri": "https://common-wa-event-fwdr.gupshup.io/globalPublisher/api/fb-cloud/events"})
-
-    subscriptionHeaders = {'Authorization': f'Bearer {systemToken}','Content-Type': 'application/json'}
-
-    subscriptionUrl = f'https://graph.facebook.com/v19.0/{wabaId}/subscribed_apps'
-    try:
-        subscriptionResponse = requests.post(subscriptionUrl, headers=subscriptionHeaders, data=payload)
-        subscriptionResponse.raise_for_status()
-        
-        if subscriptionResponse.status_code != 200:
-
-            print(f'error while adding subscription to waba | {wabaId} \n')
-            
-            log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | error while adding subscription to waba | ({wabaId}) | {subscriptionResponse["status_code"]} | {subscriptionResponse}\n')
-        
-        else:
-            
-            print(f'subscription added to waba | {wabaId}\n')
-            
-            log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | subscription added to waba | ({wabaId}) | {subscriptionResponse["status_code"]} | {subscriptionResponse}\n')
-
-    except requests.exceptions.RequestException as e:
-
-        print(f'RequestException while adding subscription to waba: {e}\n')
-        
-        log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | request exception while adding subscription to waba | ({wabaId}) | {subscriptionResponse["status_code"]} | {subscriptionResponse}\n')
-
-
 moveToCAPI()
-
 
 log_file.close()
