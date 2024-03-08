@@ -3,8 +3,8 @@ import requests
 
 
 def get_ldap_token(username, password, log_file):
-    # login_url = "https://whatsapp-internal-support.gupshup.io/support/auth/login"
-    login_url = "http://10.80.14.84:8081/support/auth/login"
+    login_url = "https://whatsapp-internal-support.gupshup.io/support/auth/login"
+    # login_url = "http://10.80.14.84:8081/support/auth/login"
     login_payload = {"username": username, "password": password}
     login_headers = {"Content-Type": "application/x-www-form-urlencoded"}
     
