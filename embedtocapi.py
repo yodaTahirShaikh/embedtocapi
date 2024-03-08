@@ -28,8 +28,7 @@ systemToken = env_vars.get("SYSTEMTOKEN")
 
 
 # Generate LDAP Token
-LDAP = get_ldap_token(username, password, log_file)
-
+LDAP = get_ldap_token(username, password)
 
 
 # File path to input csv
@@ -62,9 +61,9 @@ def moveToCAPI():
 
             if phoneNumber[i] in pnSet:
 
-                print(f"duplicate phone number or already processed ({phoneNumber[i]})\n")
+                print(f"duplicate phone number or already processed ({phoneNumber[i]}) | ({appName[i]})\n")
                 
-                log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | duplicate phone number or already processed ({phoneNumber[i]})\n')
+                log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | duplicate phone number or already processed ({phoneNumber[i]}) | ({appName[i]})\n')
                 
                 # incrementing the index to avoid rerun
                 i += 1
@@ -75,11 +74,15 @@ def moveToCAPI():
                 # adding unique phone numbers and waba id to set to process further
                 pnSet.add(phoneNumber[i])
 
-                print(f'processing {phoneNumber[i]}\n')
+                print(f'processing {appName[i]}| {phoneNumber[i]}\n')
                 
                 # preping the url and payload for the Cloud Migration API
                 moveToCAPIUrl = f"https://whatsapp-internal-support.gupshup.io/support/migrate/{appID[i]}/docker/embed"
+                
+                
                 moveToCAPIPayload = f"phone={phoneNumber[i]}&clientName={appName[i]}&phoneId={phoneId[i]}&wabaId={wabaId[i]}&forceMigrate=true"
+                
+                
                 moveToCAPIHeaders = {
                     "Authorization": f"{LDAP}",
                     "Content-Type": "application/x-www-form-urlencoded",
@@ -88,55 +91,42 @@ def moveToCAPI():
                 try:
                     
                     # Migrate to CAPI api call with exception handling
-                    # handle connection timeout within 30 seconds and response time to 70 seconds before raising exception
-                    moveToCAPIResponse = requests.post(moveToCAPIUrl,headers=moveToCAPIPayload, data=moveToCAPIHeaders, timeout=(30, 70))
+                    # Handles response time to 60 seconds before raising exception
+                    moveToCAPIResponse = requests.post(moveToCAPIUrl,headers=moveToCAPIHeaders, data=moveToCAPIPayload, timeout=60)
 
                     # raise exception if status code is not 200
                     moveToCAPIResponse.raise_for_status()
 
+                                    
+                    write_to_csv([appID[i],phoneNumber[i],appName[i],phoneId[i],wabaId[i], moveToCAPIResponse.status_code, moveToCAPIResponse.json()], output_file, log_file )
+
+                    print(f'cloud migration success for {phoneNumber[i]}\n')
+
+                    log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | success move to capi (status : {moveToCAPIResponse.status_code}) | {appName[i]} | {phoneNumber[i]} | {moveToCAPIResponse.json()}\n')
+                    
                     time.sleep(2)
 
-
-                    # if the status code from the api call is other than 200
-                    if moveToCAPIResponse.status_code != 200:
-
-                        print(f'error at move to capi api (status : {moveToCAPIResponse.status_code}) | {appName[i]} | {phoneNumber[i]} | {moveToCAPIResponse}\n')
-                        
-                        write_to_csv([appID[i],phoneNumber[i],appName[i],phoneId[i],wabaId[i], moveToCAPIResponse.status_code, moveToCAPIResponse], output_file, log_file )
-
-                        log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | error at move to capi api (status : {moveToCAPIResponse.status_code}) | {appName[i]} | {phoneNumber[i]} | {moveToCAPIResponse}\n')
-                        
-                        i += 1
-
-                        continue
-
-                    # if the status code from the api call is 200
-                    else:
-                                    
-                        write_to_csv([appID[i],phoneNumber[i],appName[i],phoneId[i],wabaId[i], moveToCAPIResponse.status_code, moveToCAPIResponse], output_file, log_file )
-
-                        print(f'cloud migration success for {phoneNumber[i]}\n')
-
-                        log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | success move to capi (status : {moveToCAPIResponse.status_code}) | {appName[i]} | {phoneNumber[i]} | {moveToCAPIResponse}\n')
-
-
-                except requests.exceptions.Timeout:
+                except requests.exceptions.Timeout as err:
                         print("move to CAPI request timed out")
 
+                        log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | move to CAPI request timed out (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}\n')
+
                 except requests.exceptions.HTTPError as err:
-                
-                    error_msg = f"error at support login | {err.response.status_code} | {username}  | {err.response.json()['message']}"
 
-                    print(f"{error_msg}\n")
+                    print(f'error at move to capi api (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}\n')
 
-                    log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} | error while  (status : {err.response.status_code}) | {username} | {err.response.json()['message']}\n")
+                    log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | error at move to capi api (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}\n')
+
+                    write_to_csv([appID[i],phoneNumber[i],appName[i],phoneId[i],wabaId[i], err.response.status_code, err.response.json()], output_file, log_file )
+                    
+                    continue
 
     except requests.exceptions.RequestException as e:
         
         print(f"error while move to CAPI: ", e)
         
         log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | error while opening csv at ({csv_file_path}) |  {str(e)} \n')
-
+    
 
 
 moveToCAPI()
