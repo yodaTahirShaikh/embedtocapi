@@ -28,7 +28,7 @@ systemToken = env_vars.get("SYSTEMTOKEN")
 
 
 # Generate LDAP Token
-LDAP = get_ldap_token(username, password)
+LDAP = get_ldap_token(username, password, log_file)
 
 
 # File path to input csv
