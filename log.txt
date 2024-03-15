@@ -1,0 +1,106 @@
+2024-03-15 12:39:09 | phone number mismatch (status : 400) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:39:09 | duplicate phone number or already processed (52156156431901) | (COBAMAAzcapotzalco2)
+2024-03-15 12:39:10 | phone number mismatch (status : 400) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:39:11 | phone number mismatch (status : 400) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:39:11 | phone number mismatch (status : 400) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:39:12 | phone number mismatch (status : 400) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:39:13 | phone number mismatch (status : 400) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:39:13 | phone number mismatch (status : 400) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:39:14 | phone number mismatch (status : 400) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:39:15 | success move to capi (status : 200) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:39:17 | success move to capi (status : 200) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:39:20 | success move to capi (status : 200) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:39:23 | success move to capi (status : 200) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:39:25 | success move to capi (status : 200) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:39:28 | success move to capi (status : 200) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:39:30 | success move to capi (status : 200) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:39:33 | success move to capi (status : 200) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:15 | phone number mismatch (status : 400) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:42:15 | duplicate phone number or already processed (52156156431901) | (COBAMAAzcapotzalco2)
+2024-03-15 12:42:16 | phone number mismatch (status : 400) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:42:17 | phone number mismatch (status : 400) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:42:18 | phone number mismatch (status : 400) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:42:18 | phone number mismatch (status : 400) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:42:19 | phone number mismatch (status : 400) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:42:20 | phone number mismatch (status : 400) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:42:20 | phone number mismatch (status : 400) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:42:21 | success move to capi (status : 200) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:24 | success move to capi (status : 200) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:26 | success move to capi (status : 200) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:29 | success move to capi (status : 200) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:31 | success move to capi (status : 200) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:34 | success move to capi (status : 200) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:37 | success move to capi (status : 200) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:39 | success move to capi (status : 200) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:42 | success move to capi (status : 200) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:45 | success move to capi (status : 200) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:47 | success move to capi (status : 200) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:50 | success move to capi (status : 200) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:52 | success move to capi (status : 200) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:55 | success move to capi (status : 200) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:42:57 | success move to capi (status : 200) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:43:00 | success move to capi (status : 200) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:17 | success move to capi (status : 200) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:19 | duplicate phone number or already processed (52156156431901) | (COBAMAAzcapotzalco2)
+2024-03-15 12:46:19 | success move to capi (status : 200) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:22 | success move to capi (status : 200) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:24 | success move to capi (status : 200) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:27 | success move to capi (status : 200) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:30 | success move to capi (status : 200) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:32 | success move to capi (status : 200) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:35 | success move to capi (status : 200) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:37 | success move to capi (status : 200) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:40 | success move to capi (status : 200) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:43 | success move to capi (status : 200) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:45 | success move to capi (status : 200) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:48 | success move to capi (status : 200) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:50 | success move to capi (status : 200) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:53 | success move to capi (status : 200) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:46:56 | success move to capi (status : 200) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:47:24 | success move to capi (status : 200) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:47:26 | duplicate phone number or already processed (52156156431901) | (COBAMAAzcapotzalco2)
+2024-03-15 12:47:26 | success move to capi (status : 200) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:47:29 | success move to capi (status : 200) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:47:32 | success move to capi (status : 200) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:47:34 | success move to capi (status : 200) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:47:37 | success move to capi (status : 200) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:47:39 | success move to capi (status : 200) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:47:42 | success move to capi (status : 200) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:50:20 | success move to capi (status : 200) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:50:22 | duplicate phone number or already processed (52156156431901) | (COBAMAAzcapotzalco2)
+2024-03-15 12:50:24 | success move to capi (status : 200) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:50:27 | success move to capi (status : 200) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:50:31 | success move to capi (status : 200) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:50:35 | success move to capi (status : 200) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:50:38 | success move to capi (status : 200) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:50:40 | success move to capi (status : 200) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:50:43 | success move to capi (status : 200) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:50:45 | Empty csv at (Mismatch_Migration_result.csv) 
+2024-03-15 12:53:37 | success move to capi (status : 200) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:53:39 | duplicate phone number or already processed (52156156431901) | (COBAMAAzcapotzalco2)
+2024-03-15 12:53:40 | success move to capi (status : 200) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:53:43 | success move to capi (status : 200) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:53:45 | success move to capi (status : 200) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:53:48 | success move to capi (status : 200) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:53:51 | success move to capi (status : 200) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:53:53 | success move to capi (status : 200) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:53:56 | success move to capi (status : 200) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:53:58 | error while opening csv at (Mismatch_Migration_result.csv) |  [Errno 2] No such file or directory: 'Mismatch_Migration_result.csv' 
+2024-03-15 12:55:32 | phone number mismatch (status : 400) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:55:32 | duplicate phone number or already processed (52156156431901) | (COBAMAAzcapotzalco2)
+2024-03-15 12:55:32 | phone number mismatch (status : 400) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:55:33 | phone number mismatch (status : 400) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:55:34 | phone number mismatch (status : 400) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-03-15 12:56:19 | success move to capi (status : 200) | COBAMAAzcapotzalco1 | 52156156431901 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:56:21 | duplicate phone number or already processed (52156156431901) | (COBAMAAzcapotzalco2)
+2024-03-15 12:56:21 | success move to capi (status : 200) | COBAMAAzcapotzalco3 | 52156156431903 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:56:24 | success move to capi (status : 200) | COBAMAAzcapotzalco4 | 52156156431904 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:56:26 | success move to capi (status : 200) | COBAMAAzcapotzalco5 | 52156156431905 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:56:29 | success move to capi (status : 200) | COBAMAAzcapotzalco6 | 52156156431906 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:56:32 | success move to capi (status : 200) | COBAMAAzcapotzalco7 | 52156156431907 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:56:34 | success move to capi (status : 200) | COBAMAAzcapotzalco8 | 52156156431908 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:56:37 | success move to capi (status : 200) | COBAMAAzcapotzalco9 | 52156156431909 | {'message': 'App migrated successfully', 'status': 'success'}
+2024-03-15 12:56:39 | Empty csv at (Mismatch_Migration_result.csv) 
+2024-03-15 15:22:42 | request exception at support login HTTPSConnectionPool(host='whatsapp-internal-support.gupshup.io', port=443): Max retries exceeded with url: /support/auth/login (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7127ba6e88b0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+
+2024-03-15 15:22:59 | login success for tahir.shaikh
