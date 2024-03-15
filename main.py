@@ -20,10 +20,8 @@ def authenticate():
     password = env_vars.get("PASSWORD")
     return get_ldap_token(username, password, open(get_file_paths()["log_file_path"], "a"))
 
+
 LDAP =  authenticate()
-
-# LDAP = "LDAP"
-
 
 def process_migration_data():
     try:
@@ -100,6 +98,9 @@ def force_migration():
     try:
     
         csvData = read_from_csv(get_file_paths()["mismatch_output_file"], open(get_file_paths()["log_file_path"], "a"))
+        
+        if( len(csvData) == 0 ):
+            return "No data found to be processed"
     
         (appID, phoneNumber, appName, phoneId, wabaId, status_code, response) = zip(*csvData)
 
@@ -129,8 +130,10 @@ def force_migration():
 
 
     except ValueError as err:
-            print(f"processing not required for | No data to process from the csv at {get_file_paths()['mismatch_output_file']} | {err}\n")
-            open(get_file_paths()["log_file_path"], "a").write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | processing not required for | No data to process from the csv at {get_file_paths()['mismatch_output_file']} | {err}\n')
+        
+        print(f'processing not required for | No data to process from the csv at {get_file_paths()["mismatch_output_file"]} | {err}')
+
+        open(get_file_paths()["log_file_path"], "a").write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | processing not required for | No data to process from the csv at at {get_file_paths()["mismatch_output_file"]} | {err}\n')
 
     except requests.exceptions.Timeout as err:
     
