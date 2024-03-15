@@ -12,4 +12,4 @@ pip install -r requirements.txt
 
 **To Run the python code**
 
-Run **embedtocapi.py** file for the program to run and it will log all the exception and error on **log.txt** file and also store request/response data in **CAPIMigrationresult.xlsx** file
+Run **embedtocapi.py** file for the program to run and it will log all the exception and error on **log.txt** file and also store request/response data in **CAPIMigrationresult.csv** file
