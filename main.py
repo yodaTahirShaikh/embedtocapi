@@ -1,9 +1,11 @@
+# Import necessary libraries and modules
 import requests
 import time
 import json
 from helper import get_ldap_token, read_from_csv, write_to_csv, parse_env_file, log_message, log_csv
 from os.path import join, dirname
 
+# Function to get file paths
 def get_file_paths():
     return {
         "log_file_path": join(dirname(__file__), "log.txt"),
@@ -13,22 +15,28 @@ def get_file_paths():
         "mismatch_output_file": "Mismatch_Migration_result.csv"
     }
 
+# Function to authenticate
 def authenticate():
     env_vars = parse_env_file(get_file_paths()["env_file_path"])
     username = env_vars.get("USERNAME")
     password = env_vars.get("PASSWORD")
     return get_ldap_token(username, password, open(get_file_paths()["log_file_path"], "a"))
 
+# Get username from environment variables
 env_vars = parse_env_file(get_file_paths()["env_file_path"])
 username = env_vars.get("USERNAME")
 
+# Authenticate using LDAP
 LDAP =  authenticate()
 
+# Function to process migration data
 def process_migration_data():
     try:
         pnSet = set()
         
+        # Read data from CSV file
         csvData = read_from_csv(get_file_paths()["data_csv_file_path"], open(get_file_paths()["log_file_path"], "a"))
+
         (appID, appName, phoneNumber, wabaId, phoneId) = zip(*csvData)
         for i in range(0, len(phoneNumber)):
             if phoneNumber[i] in pnSet:
@@ -74,6 +82,7 @@ def process_migration_data():
         open(get_file_paths()["log_file_path"], "a").write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | error while opening csv at ({get_file_paths()["data_csv_file_path"]}) |  {str(e)} \n')
         log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | error while opening csv at ({get_file_paths()["data_csv_file_path"]}) |  {str(e)}', get_file_paths()["log_file_path"])
 
+# Migrate to CAPI Forcefully
 def force_migration():
     try:
         csvData = read_from_csv(get_file_paths()["mismatch_output_file"], open(get_file_paths()["log_file_path"], "a"))
@@ -113,6 +122,7 @@ def force_migration():
         print(f"error while opening csv: ", e)
         log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | error while opening csv at ({get_file_paths()["data_csv_file_path"]}) |  {str(e)}', get_file_paths()["log_file_path"])
 
+# Main function to run the script
 def main():
     process_migration_data()
     # force_migration()

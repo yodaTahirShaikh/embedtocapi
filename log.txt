@@ -1,0 +1,7 @@
+
+2024-04-03 16:45:29 | login success for tahir.shaikh
+2024-04-03 16:45:30 | 2024-04-03 16:45:30 | tahir.shaikh | phone number mismatch (status : 400) | wzChannel3b3e06b1f8884b88a9b4487ea631a87e | 79951519628921 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-03 16:45:31 | 2024-04-03 16:45:31 | tahir.shaikh | phone number mismatch (status : 400) | wzChannel1e70aa4c953746dd91f65332b806b26f | 7915012278745 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-03 16:45:32 | 2024-04-03 16:45:32 | tahir.shaikh | phone number mismatch (status : 400) | wzChannel6b08a53ea38d4d0082a717d3e154af22 | 796836209107452 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-03 16:45:34 | 2024-04-03 16:45:34 | tahir.shaikh | phone number mismatch (status : 400) | wzChannel80a64752b4eb4fa8b69139eba1b8d290 | 148445788077624 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-03 16:45:35 | 2024-04-03 16:45:35 | tahir.shaikh | phone number mismatch (status : 400) | wzChannelcf5bc0351b9449d3915a00db305b687e | 7965064102598484 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
