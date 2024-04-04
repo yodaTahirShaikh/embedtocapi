@@ -1,0 +1,7 @@
+AppID,AppName,PhoneNumber,WabaId,PhoneId,Status_code,Response
+4e6aa51d-7efa-4c2e-a3c0-cf6f598236ae,TrustDeedScotland1,447360278014,114290475029761,114578121666554,200,"{'message': 'App migrated successfully', 'status': 'success'}"
+6c0e647a-f223-4b00-b833-f8d8d30b0ef2,KnowEscape,447488884787,101084966325386,112413228507785,200,"{'message': 'App migrated successfully', 'status': 'success'}"
+84371e97-0451-4a22-b5ec-df043d8506c8,TheAdviceCentre,447588702215,103519822533954,106616188885302,200,"{'message': 'App migrated successfully', 'status': 'success'}"
+a7b31b38-dfc5-4c68-a0fd-a971654bdcb4,RevolutionMoney2,447828590243,120485151023892,119153724490443,200,"{'message': 'App migrated successfully', 'status': 'success'}"
+d0d83cf8-26bf-4b50-ac47-c3dc94b9b7b1,RevolutionMoney,447361583848,115116051203916,114855677898268,200,"{'message': 'App migrated successfully', 'status': 'success'}"
+fb68724d-2518-4940-a922-f47a3449bf79,Luminaire,447784145920,106173825649681,100712439539997,200,"{'message': 'App migrated successfully', 'status': 'success'}"

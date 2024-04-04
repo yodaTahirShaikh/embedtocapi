@@ -64,19 +64,21 @@ def process_migration_data():
                 except requests.exceptions.Timeout as err:
                     print("move to CAPI request timed out")
                     log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | move to CAPI request timed out (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}', get_file_paths()["log_file_path"])
-                
                 except requests.exceptions.HTTPError as err:
-                    if ( err.response.status_code == 400 and err.response.json()["message"] == "Given phone number does not match with app details record" or err.response.json()["message"] == "phone number in meta does not match with phone number in SS"):
-                        print(f"phone number mismatch (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}\n")
-                        log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | phone number mismatch (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}', get_file_paths()["log_file_path"])
-                        log_csv(json.dumps({"AppID": appID[i], "AppName": appName[i], "PhoneNumber": phoneNumber[i], "WabaId": wabaId[i], "PhoneId": phoneId[i], "Status": moveToCAPIResponse.status_code, "Response": moveToCAPIResponse.json()['message']}))
-                        write_to_csv([ appID[i], appName[i], phoneNumber[i], wabaId[i], phoneId[i], err.response.status_code, err.response.json()  ], get_file_paths()["mismatch_output_file"], open(get_file_paths()["log_file_path"], "a"),)
+                    response_json = err.response.json()
+                    if 'message' in response_json:
+                        if (err.response.status_code == 400 and (response_json["message"] == "Given phone number does not match with app details record" or response_json["message"] == "phone number in meta does not match with phone number in SS")):
+                            print(f"phone number mismatch (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {response_json}\n")
+                            log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | phone number mismatch (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {response_json}', get_file_paths()["log_file_path"])
+                            log_csv(json.dumps({"AppID": appID[i], "AppName": appName[i], "PhoneNumber": phoneNumber[i], "WabaId": wabaId[i], "PhoneId": phoneId[i], "Status": moveToCAPIResponse.status_code, "Response": response_json['message']}))
+                            write_to_csv([ appID[i], appName[i], phoneNumber[i], wabaId[i], phoneId[i], err.response.status_code, response_json ], get_file_paths()["mismatch_output_file"], open(get_file_paths()["log_file_path"], "a"),)
+                            continue
+                    else:
+                        print(f"error at move to capi api (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {response_json}\n")
+                        log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | error at move to capi api (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {response_json}', get_file_paths()["log_file_path"])
+                        write_to_csv([ appID[i], appName[i], phoneNumber[i], wabaId[i], phoneId[i], err.response.status_code, response_json ], get_file_paths()["output_file"], open(get_file_paths()["log_file_path"], "a"),)
                         continue
-                
-                    print(f"error at move to capi api (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}\n")
-                    log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | error at move to capi api (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}', get_file_paths()["log_file_path"])
-                    write_to_csv([ appID[i], appName[i], phoneNumber[i], wabaId[i], phoneId[i], err.response.status_code, err.response.json() ], get_file_paths()["output_file"], open(get_file_paths()["log_file_path"], "a"),)
-                    continue
+
     except IOError as e:
         print(f"error while opening csv at: ", e)
         open(get_file_paths()["log_file_path"], "a").write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | error while opening csv at ({get_file_paths()["data_csv_file_path"]}) |  {str(e)} \n')
