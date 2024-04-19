@@ -2,6 +2,7 @@
 import requests
 import time
 import json
+import threading
 from helper import get_ldap_token, read_from_csv, write_to_csv, parse_env_file, log_message, log_csv
 from os.path import join, dirname
 
@@ -64,6 +65,7 @@ def process_migration_data():
                 except requests.exceptions.Timeout as err:
                     print("move to CAPI request timed out")
                     log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | move to CAPI request timed out (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}', get_file_paths()["log_file_path"])
+                
                 except requests.exceptions.HTTPError as err:
                     response_json = err.response.json()
                     if 'message' in response_json:

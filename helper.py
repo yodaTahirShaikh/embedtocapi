@@ -13,22 +13,21 @@ def get_ldap_token(username, password, log_file):
         login_response = requests.post(login_url, headers=login_headers, data=login_payload, timeout=30)
         login_response.raise_for_status()
         print(f'login success for {username}\n')
-        log_file.write(f'\n{time.strftime("%Y-%m-%d %H:%M:%S")} | login success for {username}\n')
+        log_file.write(f'\n{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | login success\n')
         return login_response.json()["message"]["token"]
     
     except requests.exceptions.HTTPError as err:
-        error_msg = f"error at support login | {err.response.status_code} | {username}  | {err.response.json()['message']}"
+        error_msg = f"error at support login | {username} | {err.response.status_code} | {err.response.json()['message']}"
         print(f"{error_msg}\n")
-        log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} | error at support login ({err.response.status_code}) | {username} | {err.response.json()['message']}\n")
+        log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} | {username} | error at support login ({err.response.status_code}) | {err.response.json()['message']}\n")
         raise
     except requests.exceptions.RequestException as e:
         print(f"error at support login: ", e)
-        log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | request exception at support login {str(e)}\n')
+        log_file.write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | request exception at support login {str(e)}\n')
 
 def log_message(message, log_file_path):
     with open(log_file_path, "a") as log_file:
-        timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-        log_file.write(f"{timestamp} | {message}\n")
+        log_file.write(f"{message}\n")
 
     loggerUrl = f"http://10.55.4.254:12346/logger"
     loggerheaders = {"Content-Type": "application/json"}
