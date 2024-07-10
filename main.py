@@ -38,7 +38,7 @@ def process_migration_data():
         csvData = read_from_csv(get_file_paths()["data_csv_file_path"], open(get_file_paths()["log_file_path"], "a"))
 
         (appID, appName, phoneNumber, wabaId, phoneId, Region) = zip(*csvData)
-        print(appID, appName, phoneNumber, wabaId, phoneId, Region)
+
         for i in range(0, len(phoneNumber)):
             if phoneNumber[i] in pnSet:
                 print(f"duplicate phone number or already processed ({phoneNumber[i]}) | ({appName[i]})\n")
@@ -55,12 +55,12 @@ def process_migration_data():
                 # moveToCAPIUrl = f"http://10.80.14.84:8081/support/migrate/{appID[i]}/docker/embed"
                 moveToCAPIPayload = f"phone={phoneNumber[i]}&clientName={appName[i]}&phoneId={phoneId[i]}&wabaId={wabaId[i]}&forceMigrate=false"
                 
-                                
+                # If Data present in Storage_region, migrate with region enabled.
                 if isinstance(Region[i], str):
                     moveToCAPIPayload = f"phone={phoneNumber[i]}&clientName={appName[i]}&phoneId={phoneId[i]}&wabaId={wabaId[i]}&forceMigrate=false&fbcRegion={Region[i]}"    
                 
+                # If Data not present in Storage_region, migrate without region enabled.
                 moveToCAPIHeaders = {"Authorization": f"{LDAP}","Content-Type": "application/x-www-form-urlencoded",}
-                
                 
                 try:
                     
