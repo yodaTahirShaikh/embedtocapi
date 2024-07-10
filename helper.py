@@ -83,7 +83,7 @@ def read_from_csv(csv_file_path, log_file):
 
 def write_to_csv(data, csv_file_path, log_file):
     """Write data to csv file as new rows"""
-    fields = ["AppID", "AppName", "PhoneNumber", "WabaId", "PhoneId", "Status_code", "Response"]
+    fields = ["AppID", "AppName", "PhoneNumber", "WabaId", "PhoneId", "Region", "Status_code", "Response"]
     try:
         if not os.path.isfile(csv_file_path):
             df = pd.DataFrame([data])

@@ -13,3 +13,53 @@
 2024-04-04 11:11:23 | 2024-04-04 11:11:23 | tahir.shaikh | success move to capi (status : 200) | RevolutionMoney2 | 447828590243 | {'message': 'App migrated successfully', 'status': 'success'}
 2024-04-04 11:11:40 | 2024-04-04 11:11:40 | tahir.shaikh | success move to capi (status : 200) | RevolutionMoney | 447361583848 | {'message': 'App migrated successfully', 'status': 'success'}
 2024-04-04 11:11:57 | 2024-04-04 11:11:57 | tahir.shaikh | success move to capi (status : 200) | Luminaire | 447784145920 | {'message': 'App migrated successfully', 'status': 'success'}
+
+2024-04-04 11:39:26 | login success for tahir.shaikh
+2024-04-04 11:39:27 | 2024-04-04 11:39:27 | tahir.shaikh | phone number mismatch (status : 400) | TrustDeedScotland1 | 4471360278014 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+
+2024-04-04 11:46:41 | login success for tahir.shaikh
+
+2024-04-04 11:47:16 | login success for tahir.shaikh
+2024-04-04 11:47:17 | 2024-04-04 11:47:17 | tahir.shaikh | phone number mismatch (status : 400) | TrustDeedScotland1 | 4471360278014 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 11:47:18 | 2024-04-04 11:47:18 | tahir.shaikh | phone number mismatch (status : 400) | KnowEscape | 4474888284787 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 11:47:19 | 2024-04-04 11:47:19 | tahir.shaikh | phone number mismatch (status : 400) | TheAdviceCentre | 4475887402215 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 11:47:20 | 2024-04-04 11:47:20 | tahir.shaikh | phone number mismatch (status : 400) | RevolutionMoney2 | 4478238590243 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 11:47:22 | 2024-04-04 11:47:22 | tahir.shaikh | phone number mismatch (status : 400) | RevolutionMoney | 4427361583848 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 11:47:23 | 2024-04-04 11:47:23 | tahir.shaikh | phone number mismatch (status : 400) | Luminaire | 4477841445920 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+
+2024-04-04 11:51:39 | login success for tahir.shaikh
+2024-04-04 11:51:40 | 2024-04-04 11:51:40 | tahir.shaikh | phone number mismatch (status : 400) | TrustDeedScotland1 | 4471360278014 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 11:51:40 | 2024-04-04 11:51:40 | tahir.shaikh | phone number mismatch (status : 400) | TrustDeedScotland1 | 4471360278014 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 11:51:41 | 2024-04-04 11:51:41 | tahir.shaikh | phone number mismatch (status : 400) | KnowEscape | 4474888284787 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 11:51:41 | 2024-04-04 11:51:41 | tahir.shaikh | phone number mismatch (status : 400) | KnowEscape | 4474888284787 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+
+2024-04-04 11:54:39 | login success for tahir.shaikh
+2024-04-04 11:54:40 | 2024-04-04 11:54:40 | tahir.shaikh | phone number mismatch (status : 400) | KnowEscape | 4474888284787 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 11:54:40 | 2024-04-04 11:54:40 | tahir.shaikh | phone number mismatch (status : 400) | TrustDeedScotland1 | 4471360278014 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+
+2024-04-04 12:17:05 | login success for tahir.shaikh
+2024-04-04 12:17:06 | 2024-04-04 12:17:06 | Thread_id: 0 | tahir.shaikh | phone number mismatch (status : 400) | TrustDeedScotland1 | 4471360278014 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 12:17:06 | 2024-04-04 12:17:06 | Thread_id: 1 | tahir.shaikh | phone number mismatch (status : 400) | KnowEscape | 4474888284787 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+
+2024-04-04 13:20:41 | login success for tahir.shaikh
+2024-04-04 13:22:10 | 2024-04-04 13:22:10 | tahir.shaikh | phone number mismatch (status : 400) | TrustDeedScotland1 | 4471360278014 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-04 13:22:11 | 2024-04-04 13:22:11 | tahir.shaikh | phone number mismatch (status : 400) | KnowEscape | 4474888284787 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-19 10:50:28 | tahir.shaikh | login success
+2024-04-19 10:50:30 | tahir.shaikh | phone number mismatch (status : 400) | TrustDeedScotland1 | 442237134360278014 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-19 10:50:31 | tahir.shaikh | phone number mismatch (status : 400) | KnowEscape | 447488438284787 | {'message': 'Given phone number does not match with app details record', 'status': 'error'}
+2024-04-19 11:54:25 | tahir.shaikh | login success
+2024-04-19 11:54:29 | tahir.shaikh | error at move to capi api (status : 400) | amocrm89b3c8fb05af4ff1939e890eb6358e46 | 923216546065 | {'message': {'code': 133016, 'error_data': {'details': 'Account rate limit exceeded: Registration or deregistration failed because there were too many attempts for this phone number in a short period of time', 'messaging_product': 'whatsapp'}, 'fbtrace_id': 'APQ4_Pi0CD-QuvUk2_SkuHb', 'message': '(#133016) Registration or Deregistration failed because there were too many attempts for this phone number in a short period of time', 'type': 'OAuthException'}, 'status': 'error'}
+2024-04-19 11:54:31 | tahir.shaikh | error at move to capi api (status : 400) | amocrm1dec09d062274660ad612f896224fc2b | 573028222116 | {'message': {'code': 100, 'error_subcode': 2593005, 'error_user_msg': 'Phone number is not verified through SMS or voice, please use embedded sign-up, WhatsApp Manager, direct sign-up or GraphAPI depending on your use case to verify your phone number first or contact support for help. Learn more', 'error_user_title': 'Phone number is not verified', 'fbtrace_id': 'AN4uyAp_lGQgSsnc2TO7MOq', 'is_transient': False, 'message': 'Invalid parameter', 'type': 'OAuthException'}, 'status': 'error'}
+2024-04-19 11:54:33 | tahir.shaikh | error at move to capi api (status : 400) | amocrm2b04991441754d4eaccea85e2ba64aa3 | 573182653672 | {'message': {'message': 'Back Up Data Not available In DB'}, 'status': 'error'}
+2024-04-19 11:54:35 | tahir.shaikh | error at move to capi api (status : 400) | amocrm6d762d06f2394256aec40a4494bdb791 | 5493875849016 | {'message': {'message': 'Back Up Data Not available In DB'}, 'status': 'error'}
+
+2024-06-13 09:15:09 | tahir.shaikh | login success
+2024-06-13 09:15:11 | tahir.shaikh | error at move to capi api (status : 400) | NewWorldAPI | 573024096243 | {'message': 'Given APP is already in cloud', 'status': 'error'}
+
+2024-07-10 10:59:21 | tahir.shaikh | login success
+
+2024-07-10 11:00:25 | tahir.shaikh | login success
+
+2024-07-10 11:02:01 | tahir.shaikh | login success
+
+2024-07-10 11:02:23 | tahir.shaikh | login success
