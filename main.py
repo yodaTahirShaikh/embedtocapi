@@ -151,13 +151,13 @@ def force_migration():
 # Main function to run the script
 def main():
     
-    # process_migration_data()
+    process_migration_data()
     
     # # If you want to force Migrate the extra digit Apps or 
     # # phone number just uncomment force_migration() function below 
     # # and comment out the above process_migration_data() function to just force migrate the remaining apps
     
-    force_migration()
+    # force_migration()
     
     open(get_file_paths()["log_file_path"], "a").close()
 
