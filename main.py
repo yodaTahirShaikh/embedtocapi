@@ -94,6 +94,7 @@ def process_migration_data():
         open(get_file_paths()["log_file_path"], "a").write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | error while opening csv at ({get_file_paths()["data_csv_file_path"]}) |  {str(e)} \n')
         log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | error while opening csv at ({get_file_paths()["data_csv_file_path"]}) |  {str(e)}', get_file_paths()["log_file_path"])
 
+
 # Migrate to CAPI Forcefully
 def force_migration():
     try:
@@ -105,7 +106,7 @@ def force_migration():
         for i in range(0, len(phoneNumber)):
             if ( status_code[i] == 400 and "Given phone number does not match with app details record" or "phone number in meta does not match with phone number in SS" in response[i]):
                 
-                print(f"processing mismatched number {i} of {len(phoneNumber)} | | {appName[i]}| {phoneNumber[i]}\n")
+                print(f"processing mismatched number {i} of {len(phoneNumber)} | {appName[i]}| {phoneNumber[i]}\n")
                 
                 moveToCAPIUrl = f"https://whatsapp-internal-support.gupshup.io/support/migrate/{appID[i]}/docker/embed"                
                 moveToCAPIPayload = f"phone={int(phoneNumber[i])}&clientName={appName[i]}&phoneId={int(phoneId[i])}&wabaId={int(wabaId[i])}&forceMigrate=true"
@@ -113,27 +114,34 @@ def force_migration():
                 # If Data present in Storage_region, migrate with region enabled.
                 if isinstance(Region[i], str):
                     moveToCAPIPayload = f"phone={int(phoneNumber[i])}&clientName={appName[i]}&phoneId={int(phoneId[i])}&wabaId={int(wabaId[i])}&forceMigrate=true&fbcRegion={Region[i]}"
+                    
                 moveToCAPIHeaders = {"Authorization": f"{LDAP}","Content-Type": "application/x-www-form-urlencoded",}
-                time.sleep(1)
-                moveToCAPIResponse = requests.post( moveToCAPIUrl, headers=moveToCAPIHeaders, data=moveToCAPIPayload,timeout=30 )
-                moveToCAPIResponse.raise_for_status()
-                write_to_csv([ appID[i], appName[i], int(phoneNumber[i]), int(wabaId[i]), int(phoneId[i]), Region[i], moveToCAPIResponse.status_code, moveToCAPIResponse.json()], get_file_paths()["output_file"], open(get_file_paths()["log_file_path"], "a"))
-                print(f"cloud migration success for (status : {moveToCAPIResponse.status_code})| {appName[i]} | {phoneNumber[i]}\n")
-                log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | success move to capi (status : {moveToCAPIResponse.status_code}) | {appName[i]} | {phoneNumber[i]} | {moveToCAPIResponse.json()}', get_file_paths()["log_file_path"])
+                
+                try:
+                    
+                    time.sleep(1)
+                    moveToCAPIResponse = requests.post( moveToCAPIUrl, headers=moveToCAPIHeaders, data=moveToCAPIPayload,timeout=60 )
+                    moveToCAPIResponse.raise_for_status()
+                    write_to_csv([ appID[i], appName[i], int(phoneNumber[i]), int(wabaId[i]), int(phoneId[i]), Region[i], moveToCAPIResponse.status_code, moveToCAPIResponse.json()], get_file_paths()["output_file"], open(get_file_paths()["log_file_path"], "a"))
+                    print(f"force cloud migration success for (status : {moveToCAPIResponse.status_code})| {appName[i]} | {phoneNumber[i]}\n")
+                    log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | success force move to capi (status : {moveToCAPIResponse.status_code}) | {appName[i]} | {phoneNumber[i]} | {moveToCAPIResponse.json()}', get_file_paths()["log_file_path"])
 
-    except ValueError as err:
-        print(f'processing not required for | No data to process from the csv at {get_file_paths()["mismatch_output_file"]} | {err}')
-        open(get_file_paths()["log_file_path"], "a").write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | processing not required for | No data to process from the csv at at {get_file_paths()["mismatch_output_file"]} | {err}\n')
+                except ValueError as err:
+                    print(f'processing not required for | No data to process from the csv at {get_file_paths()["mismatch_output_file"]} | {err}')
+                    open(get_file_paths()["log_file_path"], "a").write(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | processing not required for | No data to process from the csv at at {get_file_paths()["mismatch_output_file"]} | {err}\n')
+                    continue
 
-    except requests.exceptions.Timeout as err:
-            print("move to CAPI request timed out")
-            log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | move to CAPI request timed out (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}', get_file_paths()["log_file_path"])
-            write_to_csv( [ appID[i], appName[i], int(phoneNumber[i]), int(wabaId[i]), int(phoneId[i]), Region[i], err.response.status_code, err.response.json() ], get_file_paths()["output_file"], open(get_file_paths()["log_file_path"], "a"))
-    
-    except requests.exceptions.HTTPError as err:
-        print( f"error at move to capi api (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}\n")
-        log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | error at move to capi api (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}', get_file_paths()["log_file_path"])
-        write_to_csv( [ appID[i], appName[i], int(phoneNumber[i]), int(wabaId[i]), int(phoneId[i]), Region[i], err.response.status_code, err.response.json() ], get_file_paths()["output_file"], open(get_file_paths()["log_file_path"], "a"))
+                except requests.exceptions.Timeout as err:
+                    print("move to CAPI request timed out")
+                    log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | move to CAPI request timed out (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}', get_file_paths()["log_file_path"])
+                    write_to_csv( [ appID[i], appName[i], int(phoneNumber[i]), int(wabaId[i]), int(phoneId[i]), Region[i], err.response.status_code, err.response.json() ], get_file_paths()["output_file"], open(get_file_paths()["log_file_path"], "a"))
+                    continue
+
+                except requests.exceptions.HTTPError as err:
+                    print( f"error at move to capi api (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}\n")
+                    log_message(f'{time.strftime("%Y-%m-%d %H:%M:%S")} | {username} | error at move to capi api (status : {err.response.status_code}) | {appName[i]} | {phoneNumber[i]} | {err.response.json()}', get_file_paths()["log_file_path"])
+                    write_to_csv( [ appID[i], appName[i], int(phoneNumber[i]), int(wabaId[i]), int(phoneId[i]), Region[i], err.response.status_code, err.response.json() ], get_file_paths()["output_file"], open(get_file_paths()["log_file_path"], "a"))
+                    continue
 
     except IOError as e:
         print(f"error while opening csv: ", e)
@@ -143,13 +151,13 @@ def force_migration():
 # Main function to run the script
 def main():
     
-    process_migration_data()
+    # process_migration_data()
     
     # # If you want to force Migrate the extra digit Apps or 
     # # phone number just uncomment force_migration() function below 
     # # and comment out the above process_migration_data() function to just force migrate the remaining apps
     
-    # force_migration()
+    force_migration()
     
     open(get_file_paths()["log_file_path"], "a").close()
 
